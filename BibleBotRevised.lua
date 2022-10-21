@@ -1,5 +1,5 @@
-local Material = loadstring(game:HttpGet('https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua'))()
-local _ = loadstring(game:HttpGet('https://raw.githubusercontent.com/TheEpicFace007/lua-lodash/master/lodash.lua'))()
+local Material = loadstring(game:HttpGet('https://raw.githubusercontent.com/NannoXVI/Ozveck/main/module.lua'))()
+local _ = loadstring(game:HttpGet('https://raw.githubusercontent.com/NannoXVI/LODASH/main/lodash.lua'))()
 local Players = game:GetService('Players')
 
 local function findPlayer(nameOrDisplayName)
