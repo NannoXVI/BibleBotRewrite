@@ -127,7 +127,7 @@ local blacklistButton =
     }
 )
 
-local function askGod()
+local function askGod(isYesNoQuestion)
     local ans = {
         "Yes",
         "No",
@@ -152,7 +152,12 @@ local function askGod()
         "Your question is why Judgement Day will come for us sooner than before.",
         "This question is beneath me, ask another!"
     }
-    chat(ans[math.random(1, #ans)])
+    local yesNoAns = { "Yes", "No", "Perhaps", "I don't know", "Ask again later", "I refuse to answer that" }
+    if isYesNoQuestion then
+        return yesNoAns[math.random(#yesNoAns)]
+    else
+        return ans[math.random(#ans)]
+    end
 end
 
 local function help()
@@ -215,7 +220,8 @@ local function onChat(player, message)
     end
     message = string.lower(message)
     if message:match(".*!ask.-god.*") then
-        askGod()
+        local isYesNo = _.includes(message, 'are')
+        askGod(isYesNo)
     elseif message:match(".*!verse.*") or message:match(".!bible.*") then
         verse()
     elseif message:match(".*!help.*") then
