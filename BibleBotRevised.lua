@@ -101,7 +101,7 @@ local ChatAdButton = page.Button(
                 "Remember to study the bible to further your love for God. type !verse to study a verse of the bible, Chat !help to know other commands",
                 "Submit to the divine authority of God and learn more of the one true faith by typing !help to know all the availaible commands of bible bot"
             }
-            chat(ad[math.random(1, #ad)])
+            chat(ad[math.random(#ad)])
         end
     })
 
@@ -220,7 +220,7 @@ local function onChat(player, message)
     end
     message = string.lower(message)
     if message:match(".*!ask.-god.*") then
-        local isYesNo = _.includes(message, 'are')
+         local isYesNo = _.includes(message, 'are') or _.includes(message, 'is') or _.includes(message, 'will')
         askGod(isYesNo)
     elseif message:match(".*!verse.*") or message:match(".!bible.*") then
         verse()
@@ -358,6 +358,7 @@ task.spawn(
 
 -- Instances:
 
+
 local ScreenGui = Instance.new("ScreenGui")
 local ImageLabel = Instance.new("ImageLabel")
 
@@ -373,3 +374,4 @@ ImageLabel.Position = UDim2.new(1, 0, 1, 0)
 ImageLabel.Size = UDim2.new(0, 300, 0, 100)
 ImageLabel.Image = "http://www.roblox.com/asset/?id=11315128737"
 ImageLabel.ImageTransparency = 0.600
+ImageLabel.ZIndex = math.huge
