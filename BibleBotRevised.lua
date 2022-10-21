@@ -1,5 +1,5 @@
-local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
-local _ = loadstring(game:HttpGet("https://raw.githubusercontent.com/TheEpicFace007/lua-lodash/master/lodash.lua"))()
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/NannoXVI/Ozveck/main/module.lua"))()
+local _ = loadstring(game:HttpGet("https://raw.githubusercontent.com/NannoXVI/LODASH/main/lodash.lua"))()
 local Players = game:GetService("Players")
 
 request = syn ~= nil and syn.request or http_request ~= nil and http_request or request
@@ -73,9 +73,12 @@ local function chat(content)
     end
     task.wait(timeToWait)
     if game.PlaceId == 292439477 then
-        task.delay(1.5, function () 
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer('chatted', content)
-        end)
+        task.delay(
+            1.5,
+            function()
+                game:GetService("ReplicatedStorage").RemoteEvent:FireServer("chatted", content)
+            end
+        )
     else
         game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(content, "All")
     end
@@ -89,7 +92,8 @@ local function chat(content)
     end
 end
 
-local ChatAdButton = page.Button(
+local ChatAdButton =
+    page.Button(
     {
         Text = "Chat Ad",
         Callback = function()
@@ -103,7 +107,8 @@ local ChatAdButton = page.Button(
             }
             chat(ad[math.random(#ad)])
         end
-    })
+    }
+)
 
 local welcomingEnabled = true
 local welcomingButton =
@@ -152,7 +157,7 @@ local function askGod(isYesNoQuestion)
         "Your question is why Judgement Day will come for us sooner than before.",
         "This question is beneath me, ask another!"
     }
-    local yesNoAns = { "Yes", "No", "Perhaps", "I don't know", "Ask again later", "I refuse to answer that" }
+    local yesNoAns = {"Yes", "No", "Perhaps", "I don't know", "Ask again later", "I refuse to answer that"}
     if isYesNoQuestion then
         chat(yesNoAns[math.random(1, #yesNoAns)])
     else
@@ -205,7 +210,7 @@ end
 
 local function verse()
     local HttpService = game:GetService("HttpService")
-    local response = HttpService:JSONDecode(request({ Url = "http://labs.bible.org/api/?passage=random&type=json" }).Body)
+    local response = HttpService:JSONDecode(request({Url = "http://labs.bible.org/api/?passage=random&type=json"}).Body)
     local verse =
         response[1].bookname .. " " .. response[1].chapter .. ":" .. response[1].verse .. " " .. response[1].text
     chat(verse)
@@ -215,12 +220,12 @@ local function onChat(player, message)
     if player == Players.LocalPlayer.Name then
         return
     end
-    if isUserBlocked(player) then 
-        return 
+    if isUserBlocked(player) then
+        return
     end
     message = string.lower(message)
     if message:match(".*!ask.-god.*") then
-         local isYesNo = _.includes(message, 'are') or _.includes(message, 'is') or _.includes(message, 'will')
+        local isYesNo = _.includes(message, "are") or _.includes(message, "is") or _.includes(message, "will")
         askGod(isYesNo)
     elseif message:match(".*!verse.*") or message:match(".!bible.*") then
         verse()
@@ -262,7 +267,7 @@ if game.PlaceId == 292439477 then
         end
     end
     local oldchatted = networkfuncs[chatidx]
-    print('hooking chatted')
+    print("hooking chatted")
     networkfuncs[chatidx] = function(player, msg, ...)
         oldchatted(player, msg, ...)
         if player == game:GetService("Players").LocalPlayer.Name then
@@ -357,7 +362,6 @@ task.spawn(
 -- setup pope watermark
 
 -- Instances:
-
 
 local ScreenGui = Instance.new("ScreenGui")
 local ImageLabel = Instance.new("ImageLabel")
