@@ -35,7 +35,7 @@ local ui =
         Style = 1,
         SizeX = 400,
         SizeY = 240,
-        Theme = "Light"
+        Theme = "Dark"
     }
 )
 
@@ -101,7 +101,7 @@ local ChatAdButton = page.Button(
                 "Remember to study the bible to further your love for God. type !verse to study a verse of the bible, Chat !help to know other commands",
                 "Submit to the divine authority of God and learn more of the one true faith by typing !help to know all the availaible commands of bible bot"
             }
-            chat(ad[math.random(#ad)])
+            chat(ad[math.random(1, #ad)])
         end
     })
 
