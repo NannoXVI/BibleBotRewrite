@@ -154,9 +154,9 @@ local function askGod(isYesNoQuestion)
     }
     local yesNoAns = { "Yes", "No", "Perhaps", "I don't know", "Ask again later", "I refuse to answer that" }
     if isYesNoQuestion then
-        return yesNoAns[math.random(#yesNoAns)]
+        chat(yesNoAns[math.random(#yesNoAns)])
     else
-        return ans[math.random(#ans)]
+         chat(ans[math.random(#ans)])
     end
 end
 
